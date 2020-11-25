@@ -30,13 +30,20 @@ def generate_maze(spaces_x:int, spaces_y:int):
                 coord_node(t_coord=randomize_cType(), coordinates=[x,y])
     # ------------------------------------> |
 
-def print_maze(input_maze):
-
+def print_maze(input_maze, player):
+    p_loc = player.location_node.coordinates
     rows = bitwise_sqrt(len(input_maze))
 
-    for x in range(rows):
-        pass
-
+    for y in range(rows):
+        for x in range(rows):
+            if [x, y] == p_loc:
+                print("O", end=" ")
+            else:
+                if search_brothers([x,y]).coord_type == wall:
+                    print("|", end=" ")
+                else:
+                    print("X", end=" ")
+        print("\n")
 # ------------------------------------> |
 
 def search_brothers(input_coord:list=[0,0]):
@@ -120,8 +127,8 @@ class Player():
     class Direction(enum.Enum):
             left = [-1, 0]
             right = [1, 0]
-            top = [0, 1]
-            bottom = [0, -1]
+            top = [0, -1]
+            bottom = [0, 1]
 
     left = Direction.left.value
     right = Direction.right.value
@@ -148,7 +155,8 @@ class Player():
         elif goal == None:
             print("Node doesn't exist!")
         elif goal.coord_type == wall:
-            print("Can't go through a wall!")   
+            print("Can't go through a wall!")
+        print_maze(maze, self)
 # ------------------------------------------------------------------> |
 
 dir_dict = {
@@ -158,17 +166,18 @@ dir_dict = {
     "bottom" : Player.bottom
 }
 
-start = coord_node(empty, [1,1])
+start = coord_node(empty, [0,0])
 
-generate_maze(3,3)
+generate_maze(5,5)
 set_all_brothers()
 
 P = Player(start)
-P.move(P.top)
-print(P.coordinates)
+print("Player Position:", P.coordinates, "\n")
+
+print_maze(maze, P)
 
 while(True):
-    dir:str = input().lower()
+    dir:str = str(input().lower())
     P.move(dir_dict[dir])
     print(P.coordinates)
 # ------------------------------------------------------------------> |
