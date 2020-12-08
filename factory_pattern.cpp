@@ -1,6 +1,8 @@
 // Example program
 #include <iostream>
 #include <string>
+#include <vector>
+
 
 int print(std::string input){
             std::cout << input << std::endl;
@@ -9,20 +11,37 @@ int print(std::string input){
 
 class Fruit {
         public:
-            static Fruit *harvest_fruit(int choice);
-
-            virtual void information(){
-                    print("This is my Fruit info");
-                };
-            virtual void plant_seeds() {
-                    print("Planting seeds!");
-                };
-            Fruit() {
+            virtual void information() { print("This is my Fruit info"); };
+            virtual void plant_seeds() { print("Planting seeds!"); };
+            
+            Fruit() { 
+                // Constructor
                 std::cout << "A Fruit is being created" << std::endl;
-            }  // Constructor
-            // ~Fruit(); // Destructor
+            }  
+            
+            virtual ~Fruit() {
+                // Destructor    
+                std::cout << "A Fruit is thrown away!" << std::endl;
+            } 
+            
+        protected:
+            std::string name;
+            std::string color;
     };
 
+class Apple: public Fruit {
+        public:
+            Apple() {
+                name = "Apple";
+                color = "red";
+            }
+            
+            void plant_seeds() override {
+                    print("Seeds are dispersed from my flesh");
+                    print(name);
+            }
+            
+    };
 
 class Strawberry: public Fruit {
         public:
@@ -31,12 +50,7 @@ class Strawberry: public Fruit {
                 }
     };
 
-class Apple: public Fruit {
-        public:
-            void plant_seeds() {
-                    print("Seeds are dispersed from my flesh");
-                }
-    };
+
 
 class Melon: public Fruit {
         public:
@@ -46,6 +60,7 @@ class Melon: public Fruit {
     };
 
 class Orange: public Fruit {
+    
         public:
             void plant_seeds() {
                     print("Seeds are dispersed from my flesh");
@@ -59,11 +74,19 @@ enum Fruit_Types {
         orange = 4
     };
 
-Fruit *Fruit::harvest_fruit(int choice) {
+
+class Factory {
+        
+        public:        
+            virtual Fruit* harvest_fruit(int choice);
+
+    };
+
+Fruit *Factory::harvest_fruit(int choice) {
         switch (choice) {
             case apple:
-                print("case 1");
-                return new Apple;
+                print("hi");
+                return new Apple();
             case strawberry:
                 return new Strawberry;
             case melon:
@@ -71,15 +94,23 @@ Fruit *Fruit::harvest_fruit(int choice) {
             case orange:
                 return new Orange;
             default:
-                return new Apple;
+                return new Apple();
         }
 
     }
 
 int main()
 {
-    Strawberry berry;
-    berry.plant_seeds();
-    berry.information();
+    
+    std::vector<Fruit*> fruits; // -- Alternative to an array
+    Factory factory;
+    // fruits.push_back(factory.harvest_fruit(apple)); -- add a fruit to the vector
+    
+    // fruits[0];
+    Fruit* berry = factory.harvest_fruit(apple);
+    berry->plant_seeds();
+    
+    //berry.plant_seeds();
+    //berry.information();
     return 0;
 }
