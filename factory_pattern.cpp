@@ -43,21 +43,6 @@ class Apple: public Fruit {
             
     };
 
-class Strawberry: public Fruit {
-        public:
-            void plant_seeds() {
-                    print("Seeds are dispersed from my flesh");
-                }
-    };
-
-
-
-class Melon: public Fruit {
-        public:
-            void plant_seeds() {
-                    print("Seeds are dispersed from my flesh");
-                }
-    };
 
 class Orange: public Fruit {
         public:
@@ -68,6 +53,26 @@ class Orange: public Fruit {
             
             void plant_seeds() {
                     print(name + ": " + "I have lots of seeds spread around in my flesh");
+                }
+    };
+
+class Strawberry: public Fruit {
+        public:
+            Strawberry() {
+                name = "Strawberry";
+                color = "red";
+            }
+            void plant_seeds() {
+                    print(name + ": " + "Seeds are embedded on my outside");
+                }
+    };
+
+
+
+class Melon: public Fruit {
+        public:
+            void plant_seeds() {
+                    print("Seeds are dispersed from my flesh");
                 }
     };
 
@@ -114,6 +119,11 @@ int main()
     
     Fruit* orange1 = factory.harvest_fruit(orange);
     orange1->plant_seeds();
+    
+    Fruit* strawb1 = factory.harvest_fruit(strawberry);
+    strawb1->plant_seeds();
+    
+    
     
     return 0;
 }
