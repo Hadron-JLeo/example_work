@@ -37,8 +37,8 @@ class Apple: public Fruit {
             }
             
             void plant_seeds() override {
-                    print("Seeds are dispersed from my flesh");
-                    print(name);
+                    print(name + ": " + "A few seeds are in my core");
+                    //print(name);
             }
             
     };
@@ -60,10 +60,14 @@ class Melon: public Fruit {
     };
 
 class Orange: public Fruit {
-    
         public:
+            Orange() {
+                name = "Orange";
+                color = "orange";
+            }
+            
             void plant_seeds() {
-                    print("Seeds are dispersed from my flesh");
+                    print(name + ": " + "I have lots of seeds spread around in my flesh");
                 }
     };
 
@@ -92,7 +96,7 @@ Fruit *Factory::harvest_fruit(int choice) {
             case melon:
                 return new Melon;
             case orange:
-                return new Orange;
+                return new Orange();
             default:
                 return new Apple();
         }
@@ -102,15 +106,22 @@ Fruit *Factory::harvest_fruit(int choice) {
 int main()
 {
     
-    std::vector<Fruit*> fruits; // -- Alternative to an array
+    std::vector<Fruit*> fruits; 
     Factory factory;
-    // fruits.push_back(factory.harvest_fruit(apple)); -- add a fruit to the vector
     
-    // fruits[0];
-    Fruit* berry = factory.harvest_fruit(apple);
-    berry->plant_seeds();
+    Fruit* apple1 = factory.harvest_fruit(apple);
+    apple1->plant_seeds();
     
-    //berry.plant_seeds();
-    //berry.information();
+    Fruit* orange1 = factory.harvest_fruit(orange);
+    orange1->plant_seeds();
+    
     return 0;
 }
+
+// --------------- ################ NOTES ################ --------------- //
+// std::vector<Fruit*> fruits; // -- Alternative to an array
+// fruits.push_back(factory.harvest_fruit(apple)); -- add a fruit to the vector
+// fruits[0] reference to a specific fruit
+// --------------- ################ NOTES ################ --------------- //
+
+
