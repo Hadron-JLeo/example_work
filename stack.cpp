@@ -41,11 +41,11 @@ class Stack {
         Stack() {
           cout << "Created a Stack";
           content_amount = 0;
-            
+        
         }
         
-        void put_ontop(Node* new) {
-            temp = new;
+        void put_ontop(Node* new_node) {
+            Node* temp = new_node;
             temp->next = top;
             top = temp;
             
@@ -53,19 +53,16 @@ class Stack {
         }
     
         Node* take_top() {
-            temp = top;
+            Node* temp = top;
             top = top->next;
             
             content_amount--;
             return temp;
         }
         
-        int count() {
-           
-            
-        }
+        int count() { return content_amount; }
     
-}
+};
 
 int main()
 {
