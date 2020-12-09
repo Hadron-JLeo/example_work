@@ -40,6 +40,7 @@ class Queue {
     
     public:
         Queue() {
+            front, back = nullptr;
             content_amount = 0;
         }
         
@@ -53,7 +54,7 @@ class Queue {
         }
         
         Node* pop() {
-            if !(content_amount > 0){}
+            if (!(content_amount > 0)){}
             else {
                 // Take out the front, set the next node as front
                 Node* cur_node;
@@ -61,33 +62,41 @@ class Queue {
                 Node* new_front; // The front after the ejection
                 
                 cur_node = back;
+                if (cur_node->next != nullptr) {
+                    while (cur_node->next->next != nullptr) {
+                        // Iterate until we get the next.next 
+                        cur_node = back->next;
+                    }
                 
-                while (cur_node->next->next != nullptr) {
-                    // Iterate until we get the next.next 
-                    cur_node = back->next;
+                    old_front = cur_node->next;
+                    new_front = cur_node;
+                    
+                    front = new_front;
+                    
+                    content_amount--;
+                    
+                    return old_front;
                 }
+                else { return cur_node; }
                 
-                old_front = cur_node->next;
-                new_front = cur_node;
-                
-                front = new_front;
-                
-                content_amount--;
             }
             
-            return old_front;
+            return nullptr;
         }
-    
 };
 
 
 int main()
 {
-    Queue q1 = new Queue();
-    
+    Queue q1;
     
     Node* first = new Node("one");
     Node* sec = new Node("two");
+
+    q1.append(first);
+    
+    Node* out = q1.pop();
+    cout << out->name << endl;
 
     return 0;
 }
