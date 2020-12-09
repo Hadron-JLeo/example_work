@@ -18,9 +18,7 @@ class Node {
         string name;
         Node* next;
         
-        
         Node(string nm = "name") {
-            
             name = nm;
             
             if (this->next == nullptr) {
@@ -51,21 +49,31 @@ class Queue {
             temp->next = back; // The next node of new is the back node
             back = temp;       // The new back node is now new
             
+            content_amount++;
         }
         
         Node* pop() {
-            // Take out the front, set the next node as front
-            Node* cur_node;
-            Node* old_front; // The front that is being ejected
-            Node* new_front; // The front after the ejection
-            
-            while (back->next->next != nullptr) {
-                // Iterate until we get
-                cur_node = back->next;
+            if !(content_amount > 0){}
+            else {
+                // Take out the front, set the next node as front
+                Node* cur_node;
+                Node* old_front; // The front that is being ejected
+                Node* new_front; // The front after the ejection
+                
+                cur_node = back;
+                
+                while (cur_node->next->next != nullptr) {
+                    // Iterate until we get the next.next 
+                    cur_node = back->next;
+                }
+                
+                old_front = cur_node->next;
+                new_front = cur_node;
+                
+                front = new_front;
+                
+                content_amount--;
             }
-            old_front = cur_node->next;
-            new_front = cur_node;
-            
             
             return old_front;
         }
@@ -75,6 +83,7 @@ class Queue {
 
 int main()
 {
+    Queue q1 = new Queue();
     
     
     Node* first = new Node("one");
