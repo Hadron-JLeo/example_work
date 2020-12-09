@@ -31,8 +31,39 @@ class Node {
 };
 
 class Stack {
+ 
+    private:   
+        Node* top;
+        Node* bottom; // OBS
+        int content_amount;
+     
+    public:
+        Stack() {
+          cout << "Created a Stack";
+          content_amount = 0;
+            
+        }
+        
+        void put_ontop(Node* new) {
+            temp = new;
+            temp->next = top;
+            top = temp;
+            
+            content_amount++;
+        }
     
-    
+        Node* take_top() {
+            temp = top;
+            top = top->next;
+            
+            content_amount--;
+            return temp;
+        }
+        
+        int count() {
+           
+            
+        }
     
 }
 
