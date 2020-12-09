@@ -44,6 +44,7 @@ class Stack {
         
         }
         
+        // Push
         void put_ontop(Node* new_node) {
             Node* temp = new_node;
             temp->next = top;
@@ -52,6 +53,7 @@ class Stack {
             content_amount++;
         }
     
+        // Pop
         Node* take_top() {
             if (content_amount > 0) {
                 Node* temp = top;
