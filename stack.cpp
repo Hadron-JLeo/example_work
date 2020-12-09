@@ -39,7 +39,7 @@ class Stack {
      
     public:
         Stack() {
-          cout << "Created a Stack";
+          cout << "Created a Stack" << endl;
           content_amount = 0;
         
         }
@@ -53,11 +53,13 @@ class Stack {
         }
     
         Node* take_top() {
-            Node* temp = top;
-            top = top->next;
-            
-            content_amount--;
-            return temp;
+            if (content_amount > 0) {
+                Node* temp = top;
+                top = top->next;
+                
+                content_amount--;
+                return temp;
+            }
         }
         
         int count() { return content_amount; }
@@ -66,13 +68,24 @@ class Stack {
 
 int main()
 {
+    Stack stack1;
+    
     Node* first = new Node("one");
-    Node* sec;
+    Node* sec = new Node("two");
+    
+    stack1.put_ontop(first);
+    cout << stack1.count() << endl;
+    
+    stack1.put_ontop(sec);
+    cout << stack1.count() << endl;
+    
+    Node* top = stack1.take_top();
+    cout << "The top's name is: "<< top->name << endl;
+    
+    top = stack1.take_top();
+    cout << "The top's name is: "<< top->name << endl;
     
     first->next = sec;
-    
-    
-    cout<<first->name;
 
     return 0;
 }
