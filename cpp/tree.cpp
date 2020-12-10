@@ -60,6 +60,11 @@ class Tree {
         
         Tree() {
             head = nullptr;
+            leaf_amount = 0;
+        }
+        
+        int count() {
+            return leaf_amount;
         }
         
         int peek() {
@@ -67,32 +72,44 @@ class Tree {
             return head->value;
         }
         
+        
         Node* root() {
             // Return the head (root) of tree
             return head;
         }
         
+        
         void add(Node* node_nm) {
-            
-            if (leaf_amount == 0 || head == nullptr) {
-                head = node_nm;
-            }
-            
-            else {
-                Node* cur_node;  // Node to iterate through tree
-                cur_node = head; // Start as head
-                bool result; 
+            if (!is_empty(node_nm)) {
                 
-                while (cur_node != nullptr) 
-                {
-                    result = compare(cur_node, node_nm);
-                    switch (result)
-                    {
-                        // true: bigger, false: smaller
-                        case true: if (!is_empty(cur_node))  { cur_node = cur_node->right; }
-                        case false: if (!is_empty(cur_node)) { cur_node = cur_node->left; }
-                    }
+                if (leaf_amount == 0 || head == nullptr) {
+                    head = node_nm;
                 }
+                
+                else {
+                    Node* next;
+                    next = head; // Start as head
+
+                    bool result; 
+
+                    while (true) {
+                        result = compare(next, node_nm);
+                        switch (result)
+                        {
+                            // true: bigger, false: smaller
+                            case true:  next = next->right;
+                            case false: next = next->left;
+                        }
+                        if (is_empty(next)) {
+                            // if next is a nullptr
+                            next = node_nm;
+                            break;
+                        }
+                        else { continue; }
+                    }
+                } 
+                
+                leaf_amount++;
             }
         }
     
@@ -112,6 +129,7 @@ int main()
 
     t1.add(tre);
     t1.add(four);
+    cout << t1.count();
     cout << t1.root()->right->value << endl;
     //t1.add(tre);
 
