@@ -28,6 +28,7 @@ class Node {
         }
 };
 
+// ############################################### -- Class Tree Start -- ############################################# //
 class Tree {
     // Value of node_a > node_b -> right leaf
     // Else, left leaf
@@ -37,7 +38,7 @@ class Tree {
         
         bool compare (Node* comp_node, Node* input) {
             
-            if (!(is_empty(comp_node) | is_empty(comp_node))) {
+            if (!(is_empty(comp_node) || is_empty(input))) {
                 if (input->value > comp_node->value) {
                     return true;
                 }
@@ -46,6 +47,7 @@ class Tree {
         }        
         
         bool is_empty(Node* node_nm) {
+            
             if (node_nm == nullptr){
                 return true;
             }
@@ -60,26 +62,36 @@ class Tree {
             head = nullptr;
         }
         
+        int peek() {
+            // Look at the head's value
+            return head->value;
+        }
+        
+        Node* root() {
+            // Return the head (root) of tree
+            return head;
+        }
+        
         void add(Node* node_nm) {
-            
-
             
             if (leaf_amount == 0 || head == nullptr) {
                 head = node_nm;
             }
+            
             else {
                 Node* cur_node;  // Node to iterate through tree
                 cur_node = head; // Start as head
+                bool result; 
                 
-                while (cur_node->left != nullptr || cur_node->right != nullptr) 
+                while (cur_node != nullptr) 
                 {
-                    bool result = compare(cur_node, node_nm);
-                    switch (result) 
+                    result = compare(cur_node, node_nm);
+                    switch (result)
                     {
+                        // true: bigger, false: smaller
                         case true: if (!is_empty(cur_node))  { cur_node = cur_node->right; }
                         case false: if (!is_empty(cur_node)) { cur_node = cur_node->left; }
                     }
-                    
                 }
             }
         }
@@ -87,13 +99,10 @@ class Tree {
         void search(Node* node_nm) {
         
         }
-        
-        
-};
+};  // ################################################# -- Class Tree End -- ############################################### // 
 
 int main()
 {
-    
     Tree t1;
     
     Node* first = new Node(1);
@@ -101,7 +110,9 @@ int main()
     Node* tre = new Node(0);
     Node* four = new Node(3);
 
-    t1.add(first);
+    t1.add(tre);
+    t1.add(four);
+    cout << t1.root()->right->value << endl;
     //t1.add(tre);
 
     return 0;
