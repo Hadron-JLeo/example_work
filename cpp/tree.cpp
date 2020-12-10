@@ -100,14 +100,19 @@ class Tree {
                             break;
                         }
                         else {
-                            result = compare(next, node_nm);
-                            if (result) {
-                                next = next->right;
+                            Node* tmp;
+                            if (!is_empty(next)) {
+                                result = compare(next, node_nm);
+                                
+                                if (result) {
+                                    tmp = next->right;
+                                    *next = *tmp;
+                                }
+                                else {
+                                    tmp = next->left;
+                                    *next = *tmp;
+                                }
                             }
-                            else {
-                                next = next->left;
-                            }
-                            continue;
                         }
                     }
                 } 
@@ -133,7 +138,7 @@ int main()
     Node* four = new Node(3);
 
     t1.add(tre);
-    t1.add(four);
+    //t1.add(four);
     cout << t1.count() << endl;
     cout << t1.root()->value << endl;
     //cout << t1.root()->right->value << endl;
