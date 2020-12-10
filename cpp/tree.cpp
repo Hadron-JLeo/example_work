@@ -56,24 +56,27 @@ class Tree {
     public:
         Node* head;
         
+        Tree() {
+            head = nullptr;
+        }
+        
         void add(Node* node_nm) {
             
-            if (leaf_amount == 0) {
+
+            
+            if (leaf_amount == 0 || head == nullptr) {
                 head = node_nm;
             }
             else {
                 Node* cur_node;  // Node to iterate through tree
                 cur_node = head; // Start as head
                 
-                while ((cur_node->left != nullptr || cur_node->right != nullptr) 
-                        && cur_node != nullptr) 
+                while (cur_node->left != nullptr || cur_node->right != nullptr) 
                 {
                     bool result = compare(cur_node, node_nm);
                     switch (result) 
                     {
                         case true: if (!is_empty(cur_node))  { cur_node = cur_node->right; }
-                                
-                            
                         case false: if (!is_empty(cur_node)) { cur_node = cur_node->left; }
                     }
                     
@@ -99,7 +102,7 @@ int main()
     Node* four = new Node(3);
 
     t1.add(first);
-    t1.add(tre);
+    //t1.add(tre);
 
     return 0;
 }
