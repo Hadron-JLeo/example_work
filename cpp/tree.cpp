@@ -23,8 +23,8 @@ class Node {
         
         Node(int val = 0) {
             value = val;
-            left = nullptr;
-            right = nullptr;
+            left = NULL;
+            right = NULL;
         }
 };
 
@@ -37,23 +37,22 @@ class Tree {
         int leaf_amount;
         
         bool compare (Node* comp_node, Node* input) {
-            
-            if (!(is_empty(comp_node) || is_empty(input))) {
-                if (input->value > comp_node->value) {
-                    return true;
-                }
-                else { return false; }
+    
+            if ((input->value) > (comp_node->value)) {
+                return true;
             }
-            return nullptr;
+            else { 
+                return false; 
+            }
+            
         }        
         
         bool is_empty(Node* node_nm) {
             
-            if (node_nm == nullptr){
+            if (node_nm == nullptr || node_nm == NULL){
                 return true;
             }
-            
-            return false;
+            else { return false; }
         }
         
     public:
@@ -83,7 +82,7 @@ class Tree {
         void add(Node* node_nm) {
             if (!is_empty(node_nm)) {
                 
-                if (leaf_amount == 0 || head == nullptr) {
+                if (head == nullptr) {
                     head = node_nm;
                 }
                 
@@ -97,22 +96,19 @@ class Tree {
                         
                         if (is_empty(next)) {
                             // if next is a nullptr
-                            next = node_nm;
+                            *next = *node_nm;
                             break;
                         }
                         else {
-                            if (!(is_empty(next) || is_empty(node_nm))) {
-                                result = compare(next, node_nm);
-                                switch (result)
-                                {
-                                    // true: bigger, false: smaller
-                                    case true:  next = next->right;
-                                    case false: next = next->left;
-                                }
+                            result = compare(next, node_nm);
+                            if (result) {
+                                next = next->right;
+                            }
+                            else {
+                                next = next->left;
                             }
                             continue;
                         }
-                        
                     }
                 } 
                 
@@ -123,6 +119,8 @@ class Tree {
         void search(Node* node_nm) {
         
         }
+        
+        
 };  // ################################################# -- Class Tree End -- ############################################### // 
 
 int main()
@@ -136,8 +134,9 @@ int main()
 
     t1.add(tre);
     t1.add(four);
-    cout << t1.count();
-    cout << t1.root()->right->value << endl;
+    cout << t1.count() << endl;
+    cout << t1.root()->value << endl;
+    //cout << t1.root()->right->value << endl;
     //t1.add(tre);
 
     return 0;
