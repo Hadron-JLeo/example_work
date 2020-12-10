@@ -42,8 +42,9 @@ class Tree {
                 if (input->value > comp_node->value) {
                     return true;
                 }
+                else { return false; }
             }
-            return false;
+            return nullptr;
         }        
         
         bool is_empty(Node* node_nm) {
@@ -93,19 +94,25 @@ class Tree {
                     bool result; 
 
                     while (true) {
-                        result = compare(next, node_nm);
-                        switch (result)
-                        {
-                            // true: bigger, false: smaller
-                            case true:  next = next->right;
-                            case false: next = next->left;
-                        }
+                        
                         if (is_empty(next)) {
                             // if next is a nullptr
                             next = node_nm;
                             break;
                         }
-                        else { continue; }
+                        else {
+                            if (!(is_empty(next) || is_empty(node_nm))) {
+                                result = compare(next, node_nm);
+                                switch (result)
+                                {
+                                    // true: bigger, false: smaller
+                                    case true:  next = next->right;
+                                    case false: next = next->left;
+                                }
+                            }
+                            continue;
+                        }
+                        
                     }
                 } 
                 
