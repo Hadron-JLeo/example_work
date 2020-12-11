@@ -41,11 +41,14 @@ class Tree {
             if ((input->value) > (comp_node->value)) {
                 return true;
             }
-            else { 
-                return false; 
-            }
-            
+            return false; 
         }        
+        
+        void change_node_content(Node* a, Node* b) {
+            Node old_a = *a;
+            *a = *b;
+            *b = old_a;
+        }
         
         bool is_empty(Node* node_nm) {
             
@@ -101,16 +104,17 @@ class Tree {
                         }
                         else {
                             Node* tmp;
+                            tmp = nullptr;
                             if (!is_empty(next)) {
                                 result = compare(next, node_nm);
                                 
                                 if (result) {
                                     tmp = next->right;
-                                    *next = *tmp;
+                                    change_node_content(next, tmp);
                                 }
                                 else {
                                     tmp = next->left;
-                                    *next = *tmp;
+                                    change_node_content(next, tmp);
                                 }
                             }
                         }
@@ -138,7 +142,7 @@ int main()
     Node* four = new Node(3);
 
     t1.add(tre);
-    //t1.add(four);
+    t1.add(four);
     cout << t1.count() << endl;
     cout << t1.root()->value << endl;
     //cout << t1.root()->right->value << endl;
