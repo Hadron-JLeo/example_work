@@ -84,50 +84,40 @@ class Tree {
         
         void add(Node* node_nm) {
             if (!is_empty(node_nm)) {
-                
+            
                 if (head == nullptr) {
                     head = node_nm;
                 }
                 
                 else {
+                    Node* cur_node;
                     Node* next;
-                    next = head; // Start as head
-
+                    cur_node = head; // Start as head
+                    
                     bool result; 
 
+                    
                     while (true) {
+                        result = compare (cur_node, node_nm);
                         
-                        if (is_empty(next)) {
-                            // if next is a nullptr
-                            *next = *node_nm;
-                            break;
+                        if (result) {
+                            // if bigger
+                            next = cur_node->right;
+                            if (is_empty(next)) {
+                                cur_node->right = node_nm;
+                                break;
+                            }
                         }
                         else {
-                            Node* tmp;
-                            tmp = nullptr;
-                            
-                            // if next->right is not null, compare
-                            // 
-                            
-                            if (next->right != nullptr) {
-                                result = compare(next, node_nm);
-                            }
-                            else
-                            
-                            
-                            if (!is_empty(next)) {
-                                result = compare(next, node_nm);
-                                
-                                if (result) {
-                                    next- = next->right;
-                                    
-                                }
-                                else {
-                                    next = next->left;
-                                    change_node_content(next, tmp);
-                                }
+                            next = cur_node->left;
+                            if (is_empty(next)) {
+                                cur_node->left = node_nm;
+                                break;
                             }
                         }
+                        
+                        cur_node = next;
+                        continue;
                     }
                 } 
                 
@@ -153,9 +143,11 @@ int main()
 
     t1.add(tre);
     t1.add(four);
-    cout << t1.count() << endl;
+    t1.add(first);
+    cout << "Leaf Amount: " << t1.count() << endl;
     cout << t1.root()->value << endl;
-    //cout << t1.root()->right->value << endl;
+    cout << t1.root()->right->value << endl;
+    cout << t1.root()->right->left->value << endl;
     //t1.add(tre);
 
     return 0;
