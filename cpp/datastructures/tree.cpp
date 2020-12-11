@@ -105,15 +105,25 @@ class Tree {
                         else {
                             Node* tmp;
                             tmp = nullptr;
+                            
+                            // if next->right is not null, compare
+                            // 
+                            
+                            if (next->right != nullptr) {
+                                result = compare(next, node_nm);
+                            }
+                            else
+                            
+                            
                             if (!is_empty(next)) {
                                 result = compare(next, node_nm);
                                 
                                 if (result) {
-                                    tmp = next->right;
-                                    change_node_content(next, tmp);
+                                    next- = next->right;
+                                    
                                 }
                                 else {
-                                    tmp = next->left;
+                                    next = next->left;
                                     change_node_content(next, tmp);
                                 }
                             }
