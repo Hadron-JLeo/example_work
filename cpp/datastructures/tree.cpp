@@ -84,6 +84,7 @@ class Tree {
         
         void add(Node* node_nm) {
             if (!is_empty(node_nm)) {
+                int cur_depth = 0;
             
                 if (head == nullptr) {
                     head = node_nm;
@@ -99,19 +100,23 @@ class Tree {
                     
                     while (true) {
                         result = compare (cur_node, node_nm);
-                        
+                        cur_depth++;
                         if (result) {
                             // if bigger
                             next = cur_node->right;
+                            //cur_depth++;
                             if (is_empty(next)) {
                                 cur_node->right = node_nm;
+                                cur_node->right->depth = cur_depth;
                                 break;
                             }
                         }
                         else {
                             next = cur_node->left;
+                            //cur_depth++;
                             if (is_empty(next)) {
                                 cur_node->left = node_nm;
+                                cur_node->left->depth = cur_depth;
                                 break;
                             }
                         }
@@ -136,18 +141,21 @@ int main()
 {
     Tree t1;
     
-    Node* first = new Node(1);
-    Node* sec = new Node(2);
-    Node* tre = new Node(0);
-    Node* four = new Node(3);
+    Node* n0 = new Node(0);
+    Node* n1 = new Node(1);
+    Node* n2 = new Node(2);
+    Node* n3 = new Node(3);
+    Node* n4 = new Node(4);
+    Node* n5 = new Node(5);
 
-    t1.add(tre);
-    t1.add(four);
-    t1.add(first);
+    t1.add(n2);
+    t1.add(n1);
+    t1.add(n3);
+    t1.add(n0);
     cout << "Leaf Amount: " << t1.count() << endl;
-    cout << t1.root()->value << endl;
-    cout << t1.root()->right->value << endl;
-    cout << t1.root()->right->left->value << endl;
+    cout << t1.root()->depth << endl;
+    cout << t1.root()->right->depth << endl;
+    cout << t1.root()->left->left->depth << endl;
     //t1.add(tre);
 
     return 0;
