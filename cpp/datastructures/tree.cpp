@@ -91,12 +91,11 @@ class Tree {
                 }
                 
                 else {
+                    bool result; 
                     Node* cur_node;
                     Node* next;
-                    cur_node = head; // Start as head
                     
-                    bool result; 
-
+                    cur_node = head; // Start as head
                     
                     while (true) {
                         result = compare (cur_node, node_nm);
@@ -130,8 +129,13 @@ class Tree {
             }
         }
     
-        void search(Node* node_nm) {
-        
+        int search(int val) {
+            // Search for a node with a specific value
+            Node* found_node;
+            
+            
+            
+            return found_node->depth;
         }
         
         
