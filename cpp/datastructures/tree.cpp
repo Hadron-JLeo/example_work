@@ -44,6 +44,13 @@ class Tree {
             return false; 
         }        
         
+        bool compare_val (int a, int b) {
+            if (b > a) {
+                return true;
+            }
+            return false; 
+        }
+        
         void change_node_content(Node* a, Node* b) {
             Node old_a = *a;
             *a = *b;
@@ -129,13 +136,35 @@ class Tree {
             }
         }
     
-        int search(int val) {
+        Node* search(int val) {
             // Search for a node with a specific value
-            Node* found_node;
+            Node* cur_node;
+            
+            bool result;
+            
+            cur_node = head;
+            
+            while (cur_node != nullptr) {
+                
+                if (cur_node->value == val) {
+                    return cur_node;
+                }
+                else {
+                    result = compare_val (cur_node->value, val);
+                    if (result) {
+                        cur_node = cur_node->right;
+                    }
+                    else {
+                        cur_node = cur_node->left;
+                    }
+                    continue;
+                }
+            return nullptr;
+                
+            }
             
             
-            
-            return found_node->depth;
+            return cur_node;
         }
         
         
@@ -160,6 +189,7 @@ int main()
     cout << t1.root()->depth << endl;
     cout << t1.root()->right->depth << endl;
     cout << t1.root()->left->left->depth << endl;
+    cout << t1.search(2)->value;
     //t1.add(tre);
 
     return 0;
