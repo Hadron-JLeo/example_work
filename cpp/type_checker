@@ -1,0 +1,31 @@
+// C program to addresses of a functions 
+// using its name 
+#include<stdio.h> 
+#include<iostream>
+#include<typeinfo>
+
+using namespace std;
+
+// This is a tool to check if something is a function or not.
+// print result: F -> function
+// i -> int, v -> void, E -> fnct end
+
+int jule = 0;
+
+int funct() 
+{ 
+    printf("GeeksforGeeks"); 
+    return 0;
+    
+} 
+
+int main(void) 
+{  
+    printf("address of function main() is :%p\n", main); 
+    printf("address of function funct() is : %p\n", funct); 
+    cout << (typeid(funct).name()) << endl;
+    cout << (typeid(main).name()) << typeid(jule).name() << endl;
+    //cout << 
+    //cout << typedef(funct);
+    return 0; 
+} 
