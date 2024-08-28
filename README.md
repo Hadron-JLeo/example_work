@@ -20,4 +20,4 @@ Some code for a Java Music App --
 ## Pascal
 
 - 
-[![github](https://img.shields.io/badge/Pascal_red)](https://github.com/Hadron-JLeo/pascal/blob/main/liste_mit_worten.pas)
+[![github](https://img.shields.io/badge/Pascal-red)](https://github.com/Hadron-JLeo/pascal/blob/main/liste_mit_worten.pas)
