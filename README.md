@@ -3,8 +3,8 @@
 ## Python
 
 Recent years:
-- [![github](https://img.shields.io/badge/Python2024-green)](https://github.com/Hadron-JLeo/java_projects/)
-- [![github](https://img.shields.io/badge/Python2023-green)](https://github.com/Hadron-JLeo/java_projects/)
+- [![github](https://img.shields.io/badge/Python2024-darkgreen)](https://github.com/Hadron-JLeo/java_projects/)
+- [![github](https://img.shields.io/badge/Python2023-darkgreen)](https://github.com/Hadron-JLeo/java_projects/)
 
 
 Some of my answers for python problems done as excercises a while back:
