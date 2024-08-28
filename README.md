@@ -3,8 +3,8 @@
 ## Python 🐍
 
 Recent years:
-- [![github](https://img.shields.io/badge/Python2024-darkgreen)](https://github.com/Hadron-JLeo/java_projects/](https://github.com/Hadron-JLeo/example_work/tree/main/2024_code)
-- [![github](https://img.shields.io/badge/Python2023-darkgreen)](https://github.com/Hadron-JLeo/java_projects/](https://github.com/Hadron-JLeo/example_work/tree/main/2023_code)
+- [![github](https://img.shields.io/badge/Python2024-darkgreen)](https://github.com/Hadron-JLeo/example_work/tree/main/2024_code)
+- [![github](https://img.shields.io/badge/Python2023-darkgreen)](https://github.com/Hadron-JLeo/example_work/tree/main/2023_code)
 
 
 Some of my answers for python problems done as excercises a while back:
