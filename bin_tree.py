@@ -120,4 +120,5 @@ def main():
     myTree.output()
 pass
 
-main()
+if __name__ == "__main__":
+    main()
