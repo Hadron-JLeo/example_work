@@ -1,4 +1,4 @@
-# Example code that I can publicly share
+# Some Example Code
 
 Some of my answers for python problems done as excercises a while back:
 
